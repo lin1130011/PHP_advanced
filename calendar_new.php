@@ -13,6 +13,7 @@
 
         .box {
             width: 100%;
+
             /* margin: auto; */
             /* background-color: gray; */
             text-align: center;
@@ -20,40 +21,47 @@
 
         .table {
             width: 80%;
+
             margin: auto;
             /* background-color: red; */
             text-align: center;
 
         }
 
-        .header {
-            display: inline-block;
+        .data {
             width: 13%;
-            height: 50px;
-            text-align: center;
-            background-color: green;
-            margin: auto;
+            height: 75px;
+            display: inline-block;
             border: 1px solid;
-
+            padding: 25px;
         }
 
-        .data-holiday,
-        .data-outsize-holiday {
-            display: inline-block;
-            width: 13%;
+        .data.header {
+            background-color: green;
+        }
+
+        .data.outsize-holiday,
+        .data.holiday {
             background-color: pink;
         }
 
-        .data-outsize,
-        .data-outsize-holiday {
-            display: inline-block;
-            width: 13%;
+        .data.outsize-holiday,
+        data.outsize {
             color: gray;
         }
 
-        .data-real {
-            display: inline-block;
-            width: 13%;
+        .item {
+            margin: auto;
+            width: 90%;
+
+        }
+
+        .item1 {
+            float: left;
+        }
+
+        .item2 {
+            float: right;
         }
     </style>
 </head>
@@ -62,10 +70,14 @@
     <div class="box">
         <div class="table">
             <form action="?" method="get">
+                <!-- <label for="year">查詢年份</label>
+                <input type="number" name="year" id="month" max=3000>
+                <input type="submit" value="送出"> -->
                 <label for="month">查詢月份</label>
                 <input type="number" name="month" id="month" min=1 max=12>
                 <input type="submit" value="送出">
             </form>
+
             <?php
             $month = $_GET['month'] ?? date("m");
             $year = $_GET['year'] ?? date("Y");
@@ -90,7 +102,7 @@
             }
             echo "<div><h2>" . date("$year 年 $month 月") . "<h2></div>";
             foreach ($header as $key => $value) {
-                echo "<div class='header'>$value</div>";
+                echo "<div class='data header'>$value</div>";
             }
             foreach ($days as $key => $day) {
                 $data = explode("-", $day)[2];
@@ -98,20 +110,42 @@
 
                 if ($what_day == 0 || $what_day == 6) {
                     if (date("Y-m", strtotime($day)) !== date("Y-m", $first_day_stemp)) {
-                        echo "<div class='data-outsize-holiday'>$data</div>";
+                        echo "<div class='data outsize-holiday'>$data</div>";
                     } else {
-                        echo "<div class='data-holiday'>$data</div>";
+                        echo "<div class='data holiday'>$data</div>";
                     }
                 } else {
                     if (date("Y-m", strtotime($day)) !== date("Y-m", $first_day_stemp)) {
-                        echo "<div class='data-outsize'>$data</div>";
+                        echo "<div class='data outsize'>$data</div>";
                     } else {
-                        echo "<div class ='data-real'>$data</div>";
+                        echo "<div class ='data real'>$data</div>";
                     }
                 }
             }
+            $previous_month = $month - 1;
+            $next_month = $month + 1;
+            $previous_year = $year;
+            $next_year = $year;
+            if ($previous_month < 1) {
+                $previous_month = 12;
+                $previous_year = $year - 1;
+            }
+
+            if ($next_month > 12) {
+                $next_month = 1;
+                $next_year = $year + 1;
+            }
             ?>
+            <div class="item">
+                <div class="item1">
+                    <a href="./calendar_new.php?month=<?= $previous_month ?>&year=<?= $previous_year ?>">上一個月</a>
+                </div>
+                <div class="item2">
+                    <a href="./calendar_new.php?month=<?= $next_month ?>&year=<?= $next_year ?>">下一個月</a>
+                </div>
+            </div>
         </div>
+
     </div>
 
 </body>
