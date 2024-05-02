@@ -19,9 +19,7 @@
             margin-bottom: 50px;
         }
 
-        .login {
-            /* margin-top: -50px; */
-        }
+
 
         .box {
             width: 300px;
