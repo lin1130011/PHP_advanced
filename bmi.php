@@ -37,6 +37,9 @@
             <input type="reset" value="重新計算">
         </div>
     </form>
+
+    <h2>使用a標籤來代替GET請求</h2>
+    <a href="bmi_result.php?weight=100&height=500">快戳我</a>
 </body>
 
 </html>
