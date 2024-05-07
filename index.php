@@ -14,6 +14,9 @@
         <li><a href="login.php">使用者登入</a></li>
         <li><a href="calendar.php">萬年曆</a></li>
         <li><a href="calendar_new.php">萬年曆+</a></li>
+        <li><a href="./cookie/login.php">cookie練習</a></li>
+        <li><a href="./session/login.php">session練習</a></li>
+        <li><a href="./include/">檔案拆分練習</a></li>
     </ul>
 </body>
 
