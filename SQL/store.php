@@ -24,4 +24,4 @@ $sql = "UPDATE `students` SET " . join(",", $arr) . " WHERE `id` = '{$_POST['id'
 echo $sql;
 echo $data->exec($sql);
 
-// header("location:./2024-0523SQL.php");
+header("location:./2024-0523SQL.php");

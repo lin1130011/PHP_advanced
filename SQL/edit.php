@@ -75,7 +75,7 @@ $data = new PDO($dsn, $user, $password);
                 <option value="004" <?= ($user['status_code'] == "004") ? "selected" : '' ?>>結業</option>
             </select>
         </div>
-
+        <input type="hidden" name="id" value="<?= $user['id']; ?>">
         <input type="submit" value="修改"><input type="reset" value="重置">
 
     </form>
