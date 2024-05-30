@@ -18,6 +18,7 @@
         <li><a href="./session/login.php">session練習</a></li>
         <li><a href="./include/">檔案拆分練習</a></li>
         <li><a href="./SQL/2024-0523SQL.php">SQL連線</a></li>
+        <li><a href="./fuction/index.php">函式練習</a></li>
     </ul>
 </body>
 
