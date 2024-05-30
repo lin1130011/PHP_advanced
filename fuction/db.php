@@ -22,9 +22,7 @@ function find($table, $arg)
     $sql = "SELECT * FROM `{$table}` WHERE ";
 
     if (is_array($arg)) {
-        foreach ($arg as $key => $value) {
-            $tmp[] = "`$key` = '{$value}'";
-        }
+        $tmp = array2sql($arg);
         $sql .= join(" && ", $tmp);
     } else {
 
@@ -40,15 +38,11 @@ function update($table, $cols, $arg)
 
     global $pdo;
     $sql = "UPDATE `{$table}` SET ";
-    foreach ($cols as $key => $value) {
-        $tmp[] = "`$key` = '{$value}'";
-    }
+    $tmp = array2sql($cols);
     $sql .= join(",", $tmp);
 
     if (is_array($arg)) {
-        foreach ($arg as $key => $value) {
-            $tt[] = "`$key` = '{$value}'";
-        }
+        $tt = array2sql($arg);
         $sql .= " where " . join(" && ", $tt);
     } else {
         $sql .= " where `id` = '{$arg}'";
@@ -60,7 +54,22 @@ function update($table, $cols, $arg)
     return $pdo->exec($sql);
 }
 
-function insert()
+function insert($table, $cols)
 {
-    //code
+    global $pdo;
+    $sql = "INSERT INTO `{$table}`";
+
+    $sql .= "(`" . join("`,`", array_keys($cols)) . "`)";
+
+    $sql .= " VALUES('" . join("','", $cols) . "')";
+
+    return $pdo->exec($sql);
+}
+
+function array2sql($arg)
+{
+    foreach ($arg as $key => $value) {
+        $tmp[] = "`$key` = '{$value}'";
+    }
+    return $tmp;
 }
