@@ -1,13 +1,12 @@
 <?php
 
-include './libray.php';
 
 $dsn = "mysql:host=localhost;charset=utf8;dbname=school";
 $pdo = new PDO($dsn, 'root', '');
 
 
 
-function all($table, $where)
+function all($table, $where = "")
 {
     global $pdo;
     $sql = "SELECT * FROM `{$table}` $where";
@@ -72,4 +71,13 @@ function array2sql($arg)
         $tmp[] = "`$key` = '{$value}'";
     }
     return $tmp;
+}
+
+
+function dd($array)
+{
+
+    echo "<pre>";
+    print_r($array);
+    echo "</pre>";
 }

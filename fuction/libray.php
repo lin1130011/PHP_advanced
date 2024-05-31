@@ -1,14 +1,4 @@
 <?php
-echo sum(10, 25, 10);
-
-function sum(...$args)
-{
-    $sum = 0;
-    foreach ($args as $key => $arg) {
-        $sum += $arg;
-    }
-    return $sum;
-}
 
 /** 
  *在頁面上快速顯示陣列內容
