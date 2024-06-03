@@ -20,6 +20,8 @@
         <li><a href="./SQL/2024-0523SQL.php">SQL連線</a></li>
         <li><a href="./fuction/index.php">函式練習</a></li>
         <li><a href="./phpfile/">檔案上傳練習</a></li>
+        <li><a href="./fuction/20240603class.php">物件導向教學</a></li>
+        <li><a href="./fuction/base.php">物件導向實作</a></li>
     </ul>
 </body>
 
