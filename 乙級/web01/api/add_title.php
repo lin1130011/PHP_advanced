@@ -1,22 +1,15 @@
 <?php
-include_once "./base.php";
+include_once "base.php";
+$do = $_POST['table'];
+$db = ${ucfirst($do)};
 
 if (!empty($_FILES['img']['tmp_name'])) {
     move_uploaded_file($_FILES['img']['tmp_name'], "../images/" . $_FILES['img']['name']);
-    // $sql = "insert into `title` (`img`, `text`) values ('{$_FILES['img']['name']}','{$_POST['text']}')";
-    // $pdo->exec($sql);
-    $data['img'] = $_FILES['img']['name'];
-    $data['text'] = $_POST['text'];
-    $Title->save($data);
-
-    to("../admin.php?do=title");
+    $_POST['img'] = $_FILES['img']['name'];
 }
-    
 
 
-    // if (!empty($_FILESp['img']['tmp_name']) && $_FILES['img']['error'] == 0) {
-    //     $text = $_POST['text'];
-    //     $img = $_FILES['img']['name'];
-    //     move_uploaded_file($_FILES['img']['tmp_name'], "../img/" . $img);
-    //     $sql = "insert into title (`text`,`img`) values ('{$text}', '{$img}')";
-    // }
+unset($_POST['table']);
+$db->save($_POST);
+
+to("../admin.php?do=$do");

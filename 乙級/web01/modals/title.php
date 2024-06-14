@@ -12,6 +12,7 @@
         </tr>
         <tr>
             <td>
+                <input type="hidden" value="title" name="table">
                 <input type="submit" value="新增">
                 <input type="reset" value="重置">
             </td>
