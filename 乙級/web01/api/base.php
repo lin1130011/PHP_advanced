@@ -1,6 +1,4 @@
 <?php
-// $dsn = "mysql:host=localhost;charset=utf8;dbname=db01";
-// $pdo = new PDO($dsn, 'root', '');
 
 class DB
 {
@@ -16,7 +14,7 @@ class DB
 
     public function all(...$arg)
     {
-        $sql = "select * from `$this->table`";
+        $sql = "select * from  `$this->table`";
 
         if (isset($arg[0])) {
             if (is_array($arg[0])) {
@@ -30,21 +28,21 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
+        //echo $sql;
 
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function find($arg)
     {
-        $sql = "select * from `$this->table` where ";
-
+        $sql = "select * from `$this->table` ";
         if (is_array($arg)) {
             $tmp = $this->a2s($arg);
-            $sql .= join(" && ", $tmp);
+            $sql .= " where " . join(" && ", $tmp);
         } else {
-            $sql .= " `id` = '{$arg}'";
+            $sql .= " where `id`='$arg'";
         }
-        // echo $sql;
+        //echo $sql;
 
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
@@ -52,16 +50,17 @@ class DB
     public function save($arg)
     {
         if (isset($arg['id'])) {
-            // $id = $arg['id'];
-            // unset($arg['id']);
+            //update
             $tmp = $this->a2s($arg);
             $sql = "update `$this->table` set " . join(",", $tmp);
-            $sql .= " where `id` = '{$arg['id']}'";
+            $sql .= " where `id`='{$arg['id']}'";
         } else {
+            //insert
             $keys = array_keys($arg);
-            $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`)
-            values('" . join("','", $arg) . "')";
+            $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
+                   values('" . join("','", $arg) . "')";
         }
+
         return $this->pdo->exec($sql);
     }
 
@@ -72,14 +71,15 @@ class DB
             $tmp = $this->a2s($arg);
             $sql .= " where " . join(" && ", $tmp);
         } else {
-            $sql .= " where `id` = '$arg'";
+            $sql .= " where `id`='$arg'";
         }
+
         return $this->pdo->exec($sql);
     }
 
     public function count(...$arg)
     {
-        $sql = "select count(*) from `$this->table`";
+        $sql = "select count(*) from  `$this->table`";
 
         if (isset($arg[0])) {
             if (is_array($arg[0])) {
@@ -93,18 +93,30 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
+        //echo $sql;
 
         return $this->pdo->query($sql)->fetchColumn();
     }
+
 
     protected function a2s($array)
     {
         $tmp = [];
         foreach ($array as $key => $value) {
-            $tmp[] = "`{$key}` = '{$value}'";
+            $tmp[] = "`$key`='$value'";
         }
+
         return $tmp;
     }
+}
+
+
+
+function q($sql)
+{
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=db01";
+    $pdo = new PDO($dsn, 'root', '');
+    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function to($url)
@@ -119,14 +131,12 @@ function dd($array)
     echo "</pre>";
 }
 
-function q($sql)
-{
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=db01";
-    $pdo = new PDO($dsn, 'root', '');
-    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-}
 
 
 $Title = new DB('title');
-
-$Ad = new db('ad');
+$Ad = new DB('ad');
+$Mvim = new DB('mvim');
+$Image = new DB('image');
+$News = new DB('news');
+$Admin = new DB('admin');
+$Menu = new DB('menu');

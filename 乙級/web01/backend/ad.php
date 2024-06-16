@@ -1,29 +1,28 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">動態文字廣告管理</p>
-    <form method="post" action="./api/edit_ad.php">
+    <form method="post" action="./api/edit.php">
         <table width="100%">
             <tbody>
                 <tr class="yel">
                     <td width="80%">動態文字廣告</td>
                     <td width="10%">顯示</td>
                     <td width="10%">刪除</td>
+
                 </tr>
                 <?php
 
-                $sql = "select * from title";
-                // $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-                $rows = $Ad->all();
+                $rows = ${ucfirst($do)}->all();
                 foreach ($rows as $row) {
 
                 ?>
                     <tr class='cent'>
                         <td width="80%">
-                            <input type="text" name="text[]" id="text" value="<?= $row['text']; ?>">
+                            <input type="text" name="text[]" id="text" value="<?= $row['text']; ?>" style="width:98%">
                         </td>
                         <td width="10%">
                             <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? "checked" : ""; ?>>
                         </td>
-                        <td width="10%">
+                        <td width=" 10%">
                             <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                         </td>
                         <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
@@ -37,9 +36,10 @@
             <tbody>
                 <tr>
                     <td width="200px">
-                        <input type="button" onclick="op('#cover','#cvr','./modals/ad.php')" value="新增動態文字廣告">
+                        <input type="button" onclick="op('#cover','#cvr','./modals/<?= $do; ?>.php')" value="新增動態文字廣告">
                     </td>
                     <td class="cent">
+                        <input type="hidden" name="table" value="<?= $do; ?>">
                         <input type="submit" value="修改確定">
                         <input type="reset" value="重置">
                     </td>
