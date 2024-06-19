@@ -28,7 +28,8 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-        //echo $sql;
+        // echo $sql;
+        // dd($arg);
 
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -60,7 +61,7 @@ class DB
             $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
                    values('" . join("','", $arg) . "')";
         }
-
+        // echo $sql;
         return $this->pdo->exec($sql);
     }
 
@@ -140,3 +141,5 @@ $Image = new DB('image');
 $News = new DB('news');
 $Admin = new DB('admin');
 $Menu = new DB('menu');
+$Bottom = new DB('bottom');
+$Total = new DB('views');

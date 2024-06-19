@@ -10,8 +10,13 @@
                     <td></td>
                 </tr>
                 <?php
+                $total = ${ucfirst($do)}->count();
 
-                $rows = ${ucfirst($do)}->all();
+                $div = 3;
+                $pages = ceil($total / $div);
+                $now = $_GET['p'] ?? 1;
+                $start = ($now - 1) * $div;
+                $rows = ${ucfirst($do)}->all(" limit $start, $div");
                 foreach ($rows as $row) {
 
                 ?>
@@ -34,6 +39,30 @@
                 ?>
             </tbody>
         </table>
+
+        <div class="cent">
+            <?php
+            if ($now - 1 >= 1) {
+                $prev = $now - 1;
+                echo "<a href='?do=$do&p=$prev'> ";
+                echo "<";
+                echo "</a>";
+            }
+
+            for ($i = 1; $i <= $pages; $i++) {
+                $size = ($i == $now) ? "24px" : "18px";
+                echo "<a href='?do=$do&p=$i' style='font-size:$size'> ";
+                echo $i;
+                echo " </a>";
+            }
+            if ($now + 1 <= $pages) {
+                $next = $now + 1;
+                echo "<a href='?do=$do&p=$next'> ";
+                echo ">";
+                echo "</a>";
+            }
+            ?>
+        </div>
         <table style=" margin-top:40px; width:70%;">
             <tbody>
                 <tr>

@@ -13,19 +13,19 @@
                 </tr>
                 <?php
 
-                $rows = ${ucfirst($do)}->all();
+                $rows = ${ucfirst($do)}->all(['main_id' => 0]);
                 foreach ($rows as $row) {
 
                 ?>
                     <tr class='cent'>
                         <td width="30%">
-                            <input type="text" name="href[]" id="text" value="<?= $row['href']; ?>" style="width:98%">
+                            <input type="text" name="text[]" id="text" value="<?= $row['text']; ?>" style="width:98%">
                         </td>
                         <td width="30%">
-                            <input type="text" name="text[]" value="<?= $row['text']; ?>" style="width:98%">
+                            <input type="text" name="href[]" value="<?= $row['href']; ?>" style="width:98%">
                         </td>
                         <td width=" 10%">
-
+                            <?= $Menu->count(['main_id' => $row['id']]) ?>
                         </td>
                         <td width=" 10%">
                             <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>">
@@ -33,7 +33,7 @@
                         <td width=" 10%">
                             <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                         </td>
-                        <td><input type="button" value="編輯次選單"></td>
+                        <td><input type="button" value="編輯次選單" onclick="op('#cover','#cvr','./modals/submenu.php?id=<?= $row['id']; ?>')"></td>
                         <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                     </tr>
                 <?php
