@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class DB
 {
     protected $table;
@@ -94,7 +94,7 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-        //echo $sql;
+        // echo $sql;
 
         return $this->pdo->query($sql)->fetchColumn();
     }
@@ -143,3 +143,10 @@ $Admin = new DB('admin');
 $Menu = new DB('menu');
 $Bottom = new DB('bottom');
 $Total = new DB('views');
+
+if (!isset($_SESSION['view'])) {
+    $total = $Total->find(1);
+    $total['view']++;
+    $Total->save($total);
+    $_SESSION['view'] = $total['view'];
+}
