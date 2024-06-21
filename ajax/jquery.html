@@ -30,26 +30,32 @@
   ********************************************************/
 
   //利用$.ajax()方法傳送請求並取得回應
-  $.ajax(
-    {
-      url: 'https://kktix.com/events.json',
-      type: 'get',
-      success: (data) => {
-        let title = document.querySelector('.title')
-        title.innerHTML = data.title
-        let events = data.entry
-        let ul = document.querySelector('ul')
-        events.forEach((event, idx) => {
-          let li = document.createElement('li')
-          li.innerHTML = `${idx + 1}. ${event.title}`
-          ul.appendChild(li)
-        })
-      },
-    }
-  )
+  // $.ajax(
+  //   {
+  //     url: 'https://kktix.com/events.json',
+  //     type: 'get',
+  //     success: (data) => {
+  //       let title = document.querySelector('.title')
+  //       title.innerHTML = data.title
+  //       let events = data.entry
+  //       let ul = document.querySelector('ul')
+  //       events.forEach((event, idx) => {
+  //         let li = document.createElement('li')
+  //         li.innerHTML = `${idx + 1}. ${event.title}`
+  //         ul.appendChild(li)
+  //       })
+  //     },
+  //   }
+  // )
 
 
   //利用$.get()方法傳送請求並取得回應
-
+  $.get('https://kktix.com/events.json', (data) => {
+    console.log('getwhat', data);
+    $('.title').html(data.title)
+    data.entry.forEach(a => {
+      $('ul').append("<li>" + a.content + "</li>")
+    })
+  })
 
 </script>
