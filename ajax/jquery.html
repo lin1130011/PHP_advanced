@@ -1,61 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>jQuery</title>
-  <link rel="shortcut icon" href="#" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery</title>
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+      .header{
+          text-align: center;
+          color: blue;
+      }
+      .title{
+          text-align: center;
+          color: red;
+      }
+      ul{
+          text-align: left;
+          color: green;
+          list-style-type: none;
+          padding:0;
+
+      }
+      li{
+          margin: 5px;
+          padding:3px;
+
+      }   
+      li:hover{
+          background-color: #f0f0f0;
+          border-bottom:1px solid #ccc;
+      }
+  </style>
 </head>
-
 <body>
-  <h1 class="header">jQuery</h1>
-  <div class="title"></div>
-  <h4></h4>
-  <ul></ul>
-
+    <h1 class="header">jQuery</h1>
+    <div class="title"></div>
+    <h4></h4>
+    <ul></ul>
+    
 </body>
-
 </html>
 <script>
-  /********************************************************
-  * 1.api網址  https://kktix.com/events.json
-  * 2.選擇$.ajax()、$.get()、$.post()其中一種方式
-  * 3.建立回呼函式(call back function)來處理回應時的各項行為
-  * 4.建立錯誤處理
-  ********************************************************/
+    /********************************************************
+    * 1.api網址  https://kktix.com/events.json
+    * 2.選擇$.ajax()、$.get()、$.post()其中一種方式
+    * 3.建立回呼函式(call back function)來處理回應時的各項行為
+    * 4.建立錯誤處理
+    ********************************************************/
+     
+    //利用$.ajax()方法傳送請求並取得回應
+/*     $.ajax(
+      {
+        url:'https://kktix.com/events.json',
+        type:'get',
+        success:(data)=>{
+          console.log(data);
+        let title=document.querySelector('.title')
+        title.innerHTML=data.title
+        let events=data.entry
+        let ul=document.querySelector('ul')
+        events.forEach((event,idx)=>{
+            let li=document.createElement('li')
+            li.innerHTML=`${idx+1}. ${event.title}`
+            ul.appendChild(li)
+        })
+        },
 
-  //利用$.ajax()方法傳送請求並取得回應
-  // $.ajax(
-  //   {
-  //     url: 'https://kktix.com/events.json',
-  //     type: 'get',
-  //     success: (data) => {
-  //       let title = document.querySelector('.title')
-  //       title.innerHTML = data.title
-  //       let events = data.entry
-  //       let ul = document.querySelector('ul')
-  //       events.forEach((event, idx) => {
-  //         let li = document.createElement('li')
-  //         li.innerHTML = `${idx + 1}. ${event.title}`
-  //         ul.appendChild(li)
-  //       })
-  //     },
-  //   }
-  // )
+      }
+    )   */ 
 
+    
+    //利用$.get()方法傳送請求並取得回應
 
-  //利用$.get()方法傳送請求並取得回應
-  $.get('https://kktix.com/events.json', (data) => {
-    console.log('getwhat', data);
-    $('.title').html(data.title)
-    data.entry.forEach(a => {
-      $('ul').append("<li>" + a.content + "</li>")
+    $.get('https://kktix.com/events.json',(data)=>{
+
+        $(".title").html(data.title)
+        //let events=data.entry
+        data.entry.forEach(event=>{
+            $("ul").append("<li>"+event.title+"</li>")
+        })
+
     })
-  })
-
-</script>
+  </script>
