@@ -134,4 +134,4 @@ function dd($array)
 
 
 
-$Users = new DB('users');
+$User = new DB('users');
