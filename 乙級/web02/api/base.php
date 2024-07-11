@@ -142,6 +142,8 @@ $News = new DB('news');
 
 $Logs = new DB('log');
 
+$Que = new DB('que');
+
 if (!isset($_SESSION['total'])) {
     if ($Total->count(['date' => date("Y-m-d")]) > 0) {
         $total = $Total->find(['date' => date("Y-m-d")]);
