@@ -31,8 +31,9 @@
 
             <?php
             $rows = $Poster->all(' order by rank');
-
             foreach ($rows as $key => $value) {
+                $prev = ($key != 0) ? $rows[$key - 1]['id'] : $value['id'];
+                $next = ($key != (count($rows) - 1)) ? $rows[$key + 1]['id'] : $value['id'];
 
             ?>
                 <div class="row">
@@ -43,8 +44,8 @@
                         <input type="text" name="name[]" id="" value="<?= $value['name'] ?>">
                     </div>
                     <div>
-                        <button type="button" onclick="up()">往上</button>
-                        <button type="button" onclick="down()">往下</button>
+                        <button type="button" data-sw="<?= $value['id'] ?>-<?= $prev ?>" class="sw">往上</button>
+                        <button type="button" data-sw="<?= $value['id'] ?>-<?= $next ?>" class="sw">往下</button>
                     </div>
                     <div>
                         <input type="checkbox" name="sh[]" id="" value="<?= $value['id'] ?>" <?= ($value['sh'] == 1) ? 'checked' : '' ?>>顯示
@@ -87,5 +88,14 @@
 </div>
 
 <script>
-
+    $('.sw').on("click", function() {
+        console.log($(this).data('sw'))
+        $.post("./api/sw.php", {
+            table: 'Poster',
+            sw: $(this).data('sw')
+        }, (res) => {
+            console.log(res);
+            location.reload()
+        })
+    })
 </script>
