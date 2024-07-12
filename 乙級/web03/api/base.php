@@ -116,7 +116,7 @@ class DB
 
 function q($sql)
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=db07";
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=db03";
     $pdo = new PDO($dsn, 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -132,3 +132,5 @@ function dd($array)
     print_r($array);
     echo "</pre>";
 }
+
+$Poster = new DB('posters');
