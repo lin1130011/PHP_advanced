@@ -51,18 +51,16 @@
 
     function ani(idx) {
         // console.log($(".poster").eq(start).data('ani'));
-        let code = $(".poster").eq(now).data('ani');
+        let code = parseInt($(".poster").eq(now).data('ani'))
         if (idx != undefined) {
             next = idx;
         } else {
-
             if (now < $(".poster").length - 1) {
                 next = now + 1;
             } else {
                 next = 0;
             }
         }
-
 
         switch (code) {
             case 1:
@@ -73,15 +71,79 @@
                 break;
             case 2:
                 // 縮放
+
+                // 取得下一張 修改位置 設定為不顯示
+                // $('.posrer').eq(next).css({
+                //     width: 0,
+                //     height: 0,
+                //     top: "50%",
+                //     left: "50%"
+
+                // }).hide()
+
+                // $(".poster").eq(now).animate({
+                //     width: 0,
+                //     height: 0,
+                //     top: "50%",
+                //     left: "50%",
+                // }, 1000, () => {
+                //     // $(".poster").eq(now).hide()
+                //     $(".poster").eq(now).css({
+                //         width: 210,
+                //         height: 280,
+                //         top: 0,
+                //         left: 0,
+                //         display: 'none'
+                //     })
+
+                //     $(".poster").eq(next).show()
+                //     $(".poster").eq(next).animate({
+                //         width: 210,
+                //         height: 280,
+                //         top: 0,
+                //         left: 0
+                //     }, 1000)
+                // })
                 $(".poster").eq(now).hide(1000, () => {
                     $(".poster").eq(next).show(1000)
+
                 })
                 break;
             case 3:
                 // 滑入滑出
+
                 $(".poster").eq(now).slideUp(1000, () => {
                     $(".poster").eq(next).slideDown(1000)
                 })
+
+                // $(".poster").eq(now).animate({
+                //     left: -210,
+                //     top: 0,
+                //     width: 210,
+                //     height: 280,
+                //     display: 'none',
+                // }, 1000, () => {
+                //     $('.poster').eq(now).css({
+                //         left: 0,
+                //         top: 0,
+                //         width: 210,
+                //         height: 280,
+                //     })
+                // })
+
+                // $(".poster").eq(next).css({
+                //     left: 210,
+                //     width: 210,
+                //     height: 280,
+                //     top: 0,
+                //     display: 'block'
+                // })
+                // $(".poster").eq(next).animate({
+                //     left: 0,
+                //     width: 210,
+                //     height: 280,
+                //     top: 0,
+                // }, 1000)
                 break;
         }
         now = next
@@ -118,7 +180,7 @@
         },
         function() {
             slide = setInterval(() => {
-                ani
+                ani()
             }, 3000)
         }
     )
