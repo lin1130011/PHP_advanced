@@ -26,7 +26,7 @@
         margin: 5px;
     }
 </style>
-<form action="./api/add_movie.php" method="post" enctype="multipart/form-data">
+<form action="./api/save_movie.php" method="post" enctype="multipart/form-data">
     <div class="movie-data">
         <div>影片資料</div>
         <div class="movie-info">
