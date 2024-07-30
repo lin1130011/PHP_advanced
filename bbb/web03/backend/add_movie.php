@@ -7,12 +7,12 @@
     }
 
     .movie-data>div:nth-child(1),
-    .movie-intrt div:nth-child(1) {
+    .movie-intro>div:nth-child(1) {
         width: 100px;
     }
 
     .movie-data>div:nth-child(2),
-    .movie-intro div:nth-child(2) {
+    .movie-intro>div:nth-child(2) {
         width: 500px;
     }
 
@@ -23,11 +23,12 @@
     }
 
     .movie-info div {
-        margin: 5px;
+        margin: 5px 0;
     }
 </style>
+<h3 class="ct">新增院線片</h3>
 <form action="./api/save_movie.php" method="post" enctype="multipart/form-data">
-    <div class="movie-data">
+    <div class='movie-data'>
         <div>影片資料</div>
         <div class="movie-info">
             <div>
@@ -37,10 +38,10 @@
             <div>
                 <label for="">分級</label>：
                 <select name="level">
-                    <option value="">普通級</option>
-                    <option value="">輔導級</option>
-                    <option value="">保護級</option>
-                    <option value="">限制級</option>
+                    <option value="1">普遍級</option>
+                    <option value="2">輔導級</option>
+                    <option value="3">保護級</option>
+                    <option value="4">限制級</option>
                 </select>
             </div>
             <div>
@@ -66,6 +67,7 @@
                     <option value="10">10</option>
                     <option value="11">11</option>
                     <option value="12">12</option>
+
                 </select>月
                 <select name="day">
                     <option value="01">01</option>
@@ -119,10 +121,10 @@
             </div>
         </div>
     </div>
-    <div class="movie-intro">
-        <div>劇情介紹</div>
+    <div class='movie-intro'>
+        <div>劇情簡介</div>
         <div>
-            <textarea name="intro" value="" style="width: 99%; height:200px"></textarea>
+            <textarea name="intro" value="" style="width:99%;height:120px"></textarea>
         </div>
     </div>
     <div class="ct">
