@@ -11,11 +11,11 @@
     foreach ($rows as $key => $row) {
     ?>
         <tr class="pp ct">
-            <td><?= $row['acc'] ?></td>
             <td><?= $row['name'] ?></td>
+            <td><?= $row['acc'] ?></td>
             <td><?= $row['regdate'] ?></td>
             <td>
-                <button>修改</button>
+                <button onclick="location.href='?do=edit_mem&id=<?= $row['id'] ?>'">修改</button>
                 <button>刪除</button>
             </td>
         </tr>
