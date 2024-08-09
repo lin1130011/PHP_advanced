@@ -10,7 +10,7 @@
     <?php
     $rows = $Admin->all();
     foreach ($rows as $key => $row) {
-    ?>
+        ?>
         <tr class="pp ct">
             <td>
                 <?= $row['acc'] ?>
@@ -25,15 +25,15 @@
                 } else {
 
 
-                ?>
+                    ?>
                     <button onclick="location.href='?do=edit_admin&id=<?= $row['id'] ?>'">修改</button>
                     <button onclick="del('Admin',<?= $row['id'] ?>)">刪除</button>
-                <?php
+                    <?php
                 }
                 ?>
             </td>
         </tr>
-    <?php
+        <?php
     }
     ?>
 </table>
