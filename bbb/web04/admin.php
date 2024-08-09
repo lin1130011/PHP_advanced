@@ -1,5 +1,4 @@
-<?php
-include_once "./api/base.php";
+<?php include_once "./api/base.php";
 $login = $Admin->find(['acc' => $_SESSION['Admin']]);
 $loginPr = unserialize($login['pr']);
 ?>
@@ -26,7 +25,7 @@ $loginPr = unserialize($login['pr']);
 			<img src="./icon/0417.jpg">
 		</div>
 		<div id="left" class="ct">
-		<div style="min-height:400px;">
+			<div style="min-height:400px;">
 				<a href="?do=admin">管理權限設置</a>
 				<?= (in_array(1, $loginPr)) ? "<a href='?do=th'>商品分類與管理</a>" : ''; ?>
 				<?= (in_array(2, $loginPr)) ? "<a href='?do=order'>訂單管理</a>" : ''; ?>
@@ -48,7 +47,7 @@ $loginPr = unserialize($login['pr']);
 			?>
 		</div>
 		<div id="bottom" style="line-height:70px; color:#FFF; background:url(icon/bot.png);" class="ct">
-			<?= $Bottom->find(1)['bottom'] ?> : </div>
+			<?= $Bottom->find(1)['bottom']; ?></div>
 	</div>
 
 </body>

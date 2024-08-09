@@ -30,7 +30,7 @@
         }, (chk) => {
             if (parseInt(chk)) {
                 $.get("./api/chk_pw.php", {
-                    table: "Admin",
+                    table: 'Admin',
                     acc: $("#acc").val(),
                     pw: $("#pw").val()
                 }, (chk) => {

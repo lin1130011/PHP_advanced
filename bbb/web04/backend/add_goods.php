@@ -52,7 +52,7 @@
     getTypes();
     getTypes('mid', 1);
 
-    $("#bigSelect").on("change", function () {
+    $("#bigSelect").on("change", function() {
         getTypes('mid', $(this).val());
     })
 </script>

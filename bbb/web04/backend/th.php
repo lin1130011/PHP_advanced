@@ -12,7 +12,7 @@
     <?php
     $bigs = $Type->all(['big_id' => 0]);
     foreach ($bigs as $big) {
-        ?>
+    ?>
         <tr class="tt">
             <td><?= $big['name']; ?></td>
             <td class='ct'>
@@ -24,7 +24,7 @@
         if ($Type->count(['big_id' => $big['id']]) > 0) {
             $mids = $Type->all(['big_id' => $big['id']]);
             foreach ($mids as $mid) {
-                ?>
+        ?>
                 <tr class="pp ct">
                     <td><?= $mid['name']; ?></td>
                     <td>
@@ -32,11 +32,11 @@
                         <button onclick="del('Type',<?= $mid['id']; ?>)">刪除</button>
                     </td>
                 </tr>
-                <?php
+        <?php
             }
         }
         ?>
-        <?php
+    <?php
     }
     ?>
 

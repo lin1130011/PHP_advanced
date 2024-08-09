@@ -1,9 +1,4 @@
-<?php
-include_once "./base.php";
-
-$_POST['type'];
-$_POST['big'];
-$_POST['mid'];
+<?php include_once "base.php";
 
 switch ($_POST['type']) {
     case 'big':
@@ -13,5 +8,3 @@ switch ($_POST['type']) {
         $Type->save(['name' => $_POST['mid'], 'big_id' => $_POST['big']]);
         break;
 }
-
-?>

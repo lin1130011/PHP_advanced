@@ -1,4 +1,3 @@
-<?php
-include_once "./base.php";
+<?php include_once "base.php";
 
-$type->save($_POST);
+$Type->save($_POST);
