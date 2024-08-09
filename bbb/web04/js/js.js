@@ -1,13 +1,12 @@
 // JavaScript Document
-function lof(x)
-{
-	location.href=x
+function lof(x) {
+	location.href = x
 }
 
-function del(table,id){
-	$.post("./api/del.php",{table,id},function(){
+function del(table, id) {
+	$.post("./api/del.php", { table, id }, function () {
 		location.reload()
-	}	)
+	})
 }
 
 
@@ -26,7 +25,7 @@ function editType(id, dom) {
 
 }
 
-function getTypes(type = 'big', id = 0) {
+function getTypes(type = 'big', id = 0, selected = 0) {
 	$.get("./api/get_types.php", {
 		type,
 		id,
@@ -35,9 +34,16 @@ function getTypes(type = 'big', id = 0) {
 		switch (type) {
 			case 'big':
 				$("#bigSelect").html(types)
+				if (selected > 0) {
+					$("#bigSelect").val(selected)
+					getTypes('mid', selected)
+				}
 				break;
 			case 'mid':
 				$("#midSelect").html(types)
+				if (selected > 0) {
+					$("#midSelect").val(selected)
+				}
 				break;
 		}
 	})
