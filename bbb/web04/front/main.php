@@ -68,7 +68,9 @@ foreach ($rows as $row) {
             <div class='tt ct'><?= $row['name']; ?></div>
             <div class='pp'>
                 價錢:<?= $row['price']; ?>
-                <img src="./icon/0402.jpg" style="float:right">
+                <a href="?do=buycart&id=<?= $row['id']; ?>&qt=1">
+                    <img src="./icon/0402.jpg" style="float:right">
+                </a>
             </div>
             <div class='pp'>規格:<?= $row['spec']; ?></div>
             <div class='pp'>簡介:<?= mb_substr($row['intro'], 0, 30); ?>...</div>
@@ -78,3 +80,6 @@ foreach ($rows as $row) {
     <?php
 }
 ?>
+<script>
+
+</script>
