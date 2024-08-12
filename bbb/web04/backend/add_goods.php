@@ -1,5 +1,4 @@
 <h2 class="ct">新增商品</h2>
-
 <form action="./api/save_goods.php" method="post" enctype="multipart/form-data">
     <table class="all">
         <tr>
@@ -46,14 +45,14 @@
     <div class="ct">
         <input type="submit" value="新增">
         <input type="reset" value="重置">
-        <input type="button" value="返回">
+        <input type="button" value="返回" onclick="location.href='?do=th'">
     </div>
 </form>
 <script>
     getTypes();
     getTypes('mid', 1);
 
-    $("#bigSelect").on("change", function () {
+    $("#bigSelect").on("change", function() {
         getTypes('mid', $(this).val());
     })
 </script>
